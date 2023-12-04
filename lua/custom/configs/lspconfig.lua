@@ -16,3 +16,28 @@ lspconfig.clangd.setup {
   end,
   capabilities = capabilities,
 }
+
+
+lspconfig.tsserver.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    init_options = {
+        preferences = {
+            disableSuggestions = true,
+        }
+    }
+}
+
+lspconfig.svelte.setup {
+  filetypes = { "svelte" },
+  on_attach = function(client, bufnr)
+    if client.name == 'svelte' then
+      vim.api.nvim_create_autocmd("BufWritePost", {
+        pattern = { "*.js", "*.ts" },
+        callback = function(ctx)
+          client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.file })
+        end,
+      })
+    end
+  end
+}

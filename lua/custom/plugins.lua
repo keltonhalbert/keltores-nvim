@@ -14,11 +14,27 @@ local plugins = {
     end,
   },
   {
+    "nvim-treesitter/nvim-treesitter",
+  },
+  {
+    'windwp/nvim-ts-autotag',
+    dependencies = "nvim-treesitter/nvim-treesitter",
+    config = function ()
+      require('nvim-ts-autotag').setup({
+      })
+    end,
+    lazy = true,
+    event = "VeryLazy"
+  },
+  {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
         'clangd',
-        'clang-format'
+        'eslint-lsp',
+        'clang-format',
+        'typescript-language-server',
+        'svelte-language-server',
       }
     }
   }

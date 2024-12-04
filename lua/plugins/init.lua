@@ -1,7 +1,7 @@
 return {
   {
     "stevearc/conform.nvim",
-    -- event = 'BufWritePre', -- uncomment for format on save
+    event = 'BufWritePre', -- uncomment for format on save
     opts = require "configs.conform",
   },
 
@@ -20,8 +20,30 @@ return {
   			"vim", "lua", "vimdoc",
        "html", "css", "python",
         "c", "cpp", "svelte",
-        "typescript"
+        "typescript", "markdown",
+        "markdown_inline", "make",
+        "dockerfile"
   		},
   	},
+  },
+  {
+    "williamboman/mason.nvim",
+    opts = {
+      ensure_installed = {
+        "lua-language-server",
+        "clang-format",
+        "stylua",
+        "typescript-language-server",
+        "tailwindcss-language-server",
+        "clangd",
+        "html-lsp",
+        "eslint-lsp",
+        "css-lsp",
+        "prettier",
+        "cmake-language-server",
+        "svelte-language-server",
+        "python-lsp-server",
+      }
+    },
   },
 }

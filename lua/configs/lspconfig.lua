@@ -7,7 +7,7 @@ local lspconfig = require "lspconfig"
 local servers = {
   "html", "cssls", "clangd", "svelte",
   "ts_ls", "cmake", "eslint", "lua_ls",
-  "pylsp", "tailwindcss"
+  "pylsp", "tailwindcss",
 }
 
 local nvlsp = require "nvchad.configs.lspconfig"

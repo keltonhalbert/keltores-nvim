@@ -1,7 +1,7 @@
 return {
   {
     "stevearc/conform.nvim",
-    event = 'BufWritePre', -- uncomment for format on save
+    event = "BufWritePre", -- uncomment for format on save
     opts = require "configs.conform",
   },
 
@@ -12,19 +12,38 @@ return {
       require "configs.lspconfig"
     end,
   },
-
   {
-  	"nvim-treesitter/nvim-treesitter",
-  	opts = {
-  		ensure_installed = {
-  			"vim", "lua", "vimdoc",
-       "html", "css", "python",
-        "c", "cpp", "svelte",
-        "typescript", "markdown",
-        "markdown_inline", "make",
-        "dockerfile"
-  		},
-  	},
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = {
+        "vim",
+        "lua",
+        "vimdoc",
+        "html",
+        "css",
+        "python",
+        "c",
+        "cpp",
+        "svelte",
+        "typescript",
+        "markdown",
+        "markdown_inline",
+        "make",
+        "dockerfile",
+        "comment",
+      },
+    },
+  },
+  {
+    "windwp/nvim-ts-autotag",
+    dependencies = "nvim-treesitter/nvim-treesitter",
+    config = function()
+      require("nvim-ts-autotag").setup {
+        -- your config
+      }
+    end,
+    lazy = true,
+    event = "VeryLazy",
   },
   {
     "williamboman/mason.nvim",
@@ -43,7 +62,7 @@ return {
         "cmake-language-server",
         "svelte-language-server",
         "python-lsp-server",
-      }
+      },
     },
   },
 }

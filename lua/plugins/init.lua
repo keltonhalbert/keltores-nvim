@@ -1,8 +1,8 @@
-vim.filetype.add({
-    extension = {
-        svx = "markdown",
-    },
-})
+vim.filetype.add {
+  extension = {
+    svx = "markdown",
+  },
+}
 return {
   {
     "stevearc/conform.nvim",

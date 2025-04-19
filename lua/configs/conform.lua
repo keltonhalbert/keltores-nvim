@@ -4,6 +4,7 @@ local options = {
     cpp = { "clang_format" },
     css = { "prettier" },
     html = { "prettier" },
+    zig = { "zigfmt" },
   },
 
   format_on_save = {

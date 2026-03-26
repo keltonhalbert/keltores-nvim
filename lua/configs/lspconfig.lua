@@ -1,9 +1,9 @@
 -- load defaults i.e lua_lsp
 require("nvchad.configs.lspconfig").defaults()
 
-local lspconfig = require "lspconfig"
+local nvlsp = require "nvchad.configs.lspconfig"
 
--- EXAMPLE
+-- lsps with default config
 local servers = {
   "html",
   "cssls",
@@ -13,25 +13,37 @@ local servers = {
   "cmake",
   "eslint",
   "lua_ls",
-  "pylsp",
   "tailwindcss",
   "zls",
 }
 
-local nvlsp = require "nvchad.configs.lspconfig"
-
--- lsps with default config
 for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
+  vim.lsp.config(lsp, {
     on_attach = nvlsp.on_attach,
     on_init = nvlsp.on_init,
     capabilities = nvlsp.capabilities,
-  }
+  })
 end
 
--- configuring single server, example: typescript
--- lspconfig.ts_ls.setup {
---   on_attach = nvlsp.on_attach,
---   on_init = nvlsp.on_init,
---   capabilities = nvlsp.capabilities,
--- }
+vim.lsp.config("basedpyright", {
+  on_attach = nvlsp.on_attach,
+  on_init = nvlsp.on_init,
+  capabilities = nvlsp.capabilities,
+  settings = {
+    basedpyright = {
+      analysis = {
+        useLibraryCodeForTypes = true,
+        typeCheckingMode = "basic",
+        diagnosticMode = "workspace",
+        autoSearchPath = true,
+        inlayHints = {
+          callArgumentNames = true,
+        },
+      },
+    },
+  },
+})
+
+-- enable all servers at once
+vim.lsp.enable(servers)
+vim.lsp.enable { "basedpyright" }
